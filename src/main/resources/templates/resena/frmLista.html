@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body style="background-color: white">
+
+	<header th:replace="master/master :: header"></header>
+
+	<div class="container">
+
+
+		<hr style="background-color: gold" />
+		<div
+			style="font-size: 28px; color: black; font-weight: 60; font-family: fantasy;">Lista
+			de Reseñas</div>
+		<hr style="background-color: black; font-weight: 20" />
+		<hr style="background-color: gold" />
+
+		<div>
+			<table style="width: 100%">
+				<tr th:each="a:${listaResenas}">
+					
+					<div class="card" style="width: 12rem; display: inline-block">
+					<img th:src="@{/image/resena.png}" class="card-img-top">
+						<div class="card-body">
+							<h5 class="card-title" th:text="${a.mensaje}"></h5>
+							<p class="card-text" th:text="${a.idResena}"></p>
+						</div>
+					</div>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<footer th:fragment="footer" class="container">
+		<hr style="background-color: black" />
+		<p align="center">G-Point en web 2022</p>
+	</footer>
+</body>
+</html>

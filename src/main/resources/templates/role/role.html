@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head"></head>
+<meta charset="UTF-8"></meta>
+
+<body style="background-color: white">
+
+	<header th:replace="master/master :: header"></header>
+
+	<div class="container">
+
+		<hr style="background-color: gold" />
+		<div
+			style="font-size: 28px; color: black; font-weight: 60; font-family: fantasy;">Registrar Roles</div>
+		<hr style="background-color: black; font-weight: 20" />
+		<hr style="background-color: gold" />
+		
+		<div>
+			<form th:action="@{/roles/guardar}" th:object="${r}" method="post">
+				<div class="col-sm-12">
+					<label for="idUsuario" class="col-sm-2 col-form-label">Usuario:
+					</label> <select class="form-control" th:field="*{user.id}">
+						<option th:each="u: ${listaUsuarios}" th:value="${u.id}"
+							th:text="${u.username}" th:selected="(${u.id} == *{user.id})"></option>
+					</select>
+				</div>
+				<label for="descripcion" class="col-sm-2 col-form-label">Rol:
+				</label>
+				<div class="col-sm-12">
+					<select name="select" th:field="*{rol}" class="form-control">
+						<option value="ROLE_ADMIN" selected>Administrador</option>
+						<option value="ROLE_USER">Usuario</option>
+						<option value="ROLE_DEVELOPER">Desarrollador</option>
+
+					</select>
+				</div>
+				<hr style="background-color: rgb(0, 0, 0)" />
+				<div class="form-group row">
+					<div class="col-sm-6">
+						<input type="submit" value="Registrar" class="btn btn-dark" /> <a
+							href="/roles/listar" class="btn btn-danger"><span>Cancelar</span></a>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+
+
+	<div th:if="${mensaje}" class="alert alert-info">
+		<p th:text="${mensaje}"></p>
+	</div>
+	<footer th:replace="master/master :: footer"></footer>
+</body>
+</html>

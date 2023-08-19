@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head"></head>
+<meta charset="UTF-8"></meta>
+
+<body style="background-color: white">
+
+	<header th:replace="master/master :: header"></header>
+
+	<div class="container">
+		<hr style="background-color: gold" />
+		<div
+			style="font-size: 28px; color: black; font-weight: 60; font-family: fantasy;">Lista
+			de Notificaciones</div>
+		<hr style="background-color: black; font-weight: 20" />
+		<hr style="background-color: gold" />
+
+		<div>
+
+			<div class="table-responsive">
+				<table class="table">
+					<thead class="bg-warning">
+						<tr>
+							<th>Id</th>
+							<th>Juego</th>
+							<th>Usuario</th>
+							<th>Mensaje</th>
+							<th>Activo</th>
+							<th>Eliminar</th>
+							<th>Actualizar</th>
+						</tr>
+					</thead>
+					<tbody id="juego-list"  class="bg-dark text-white">
+						<tr th:each="n:${listaNotificaciones}">
+						 	<td th:text="${n.idNotificacion}"></td>
+							<td th:text="${n.juego.nombreJuego}"></td>
+							<td th:text="${n.usuario.username}"></td>
+							<td th:text="${n.mensaje}"></td>
+							<td th:text="${n.notificacionActiva}"></td>
+							
+							<!-- OPERACIONES -->
+							<td align="center"><a
+								th:href="@{/notificaciones/eliminar?id=}+${n.idNotificacion}"><img
+									th:src="@{/image/delete.png}" width="30" height="30"></a></td>
+							<td align="center"><a
+								th:href="@{'/notificaciones/irmodificar/'+${n.idNotificacion}}"><img
+									th:src="@{/image/update.png}" width="30" height="30"></a></td>
+						</tr>
+					</tbody>
+				</table>
+				<div th:if="${mensaje}" class="alert alert-info">
+					<p th:text="${mensaje}"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<footer th:replace="master/master :: footer"></footer>
+</body>
+</html>

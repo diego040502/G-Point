@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head"></head>
+<meta charset="UTF-8"></meta>
+
+<body style="background-color: white">
+
+	<header th:replace="master/master :: header"></header>
+
+	<div class="container">
+
+		<hr style="background-color: gold" />
+		<div
+			style="font-size: 28px; color: black; font-weight: 60; font-family: fantasy;">Registrar
+			Notificacion:</div>
+		<hr style="background-color: black; font-weight: 20" />
+		<hr style="background-color: gold" />
+
+		<div class="row">
+			<div class="col-8">
+				<form th:action="@{/notificaciones/guardar}" th:object="${n}"
+					method="post">
+					<div class="col-sm-12">
+
+						<label class="form-label" style="font-weight: 600">Juego:</label> 
+						<select class="form-control" th:field="*{juego.idJuego}">
+							<option th:each="j: ${listaJuegos}" th:value="${j.idJuego}"
+								th:text="${j.nombreJuego}"
+								th:selected="(${j.idJuego} == *{juego.idJuego})"></option>
+						</select>
+					</div>
+					<div class="col-sm-12">
+						<label for="idUsuario" class="col-sm-2 col-form-label">Usuario:
+						</label> <select class="form-control" th:field="*{usuario.id}">
+							<option th:each="u: ${listaUsuarios}" th:value="${u.id}" th:text="${u.username}"
+								th:selected="(${u.id} == *{usuario.id})"></option>
+						</select>
+					</div>
+
+					<!-- MENSAJE -->
+					<div class="col-sm-12">
+						<label class="form-label" style="font-weight: 600">Mensaje:
+						</label><input type="text" th:field="*{mensaje}" class="form-control"
+							pattern="[10-100]" title="Debe colocar un mensaje de 0 a 100 dígitos" required></input>
+					</div>
+
+					<div class="col-sm-12">
+						<label class="form-label" style="font-weight: 600">Notificacion
+							Activa: </label><input type="text" th:field="*{notificacionActiva}"
+							class="form-control" pattern="[A-Z2]"
+							title="Debe indicar el estado de la notificacion (SI/NO)" required></input>
+					</div>
+					<div class="col-sm-12">
+
+						<input type="submit" value="Registrar" class="btn btn-dark"></input>
+
+					</div>
+
+				</form>
+			</div>
+
+			<div class="col" align="center">
+				<img th:src="@{/image/registro.png}" width="300" height="320"
+					align="middle">
+			</div>
+		</div>
+	</div>
+
+
+	<div th:if="${mensaje}" class="alert alert-info">
+		<p th:text="${mensaje}"></p>
+	</div>
+	<footer th:replace="master/master :: footer"></footer>
+</body>
+</html>

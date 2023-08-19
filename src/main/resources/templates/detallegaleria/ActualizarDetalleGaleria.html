@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head"></head>
+<meta charset="UTF-8"></meta>
+
+<body style="background-color: white">
+
+	<header th:replace="master/master :: header"></header>
+
+	<div class="container">
+
+		<hr style="background-color: gold" />
+		<div
+			style="font-size: 28px; color: black; font-weight: 60; font-family: fantasy;">Actualizar
+			Detalle Galeria</div>
+		<hr style="background-color: black; font-weight: 20" />
+		<hr style="background-color: gold" />
+
+		<div>
+			<form th:action="@{/detallegalerias/modificar}" th:object="${dga}" method="post">
+
+				<div class="col-sm-12">
+					<label for="idResena" class="col-sm-2 col-form-label">Galeria:
+					</label> <select class="form-control" th:field="*{galeria.idGaleria}" required="required">
+						<option th:each="g: ${listaGalerias}"
+							th:value="${g.idGaleria}" th:text="${g.nombreGaleria}"
+							th:selected="(${g.idGaleria} == *{galeria.idGaleria})"></option>
+					</select>
+				</div>
+
+				<div class="col-sm-12">
+					<label for="idUsuario" class="col-sm-2 col-form-label">Usuario:
+					</label> <select class="form-control" th:field="*{usuario.id}" required="required">
+						<option th:each="u: ${listaUsuarios}" th:value="${u.id}"
+							th:text="${u.username}" th:selected="(${u.id} == *{usuario.id})"></option>
+					</select>
+				</div>
+				
+				<div class="col-sm-12">
+					<label for="idJuego" class="col-sm-2 col-form-label">Juego:
+					</label> <select class="form-control" th:field="*{juego.idJuego}" required="required">
+						<option th:each="j: ${listaJuegos}" th:value="${j.idJuego}"
+							th:text="${j.nombreJuego}" th:selected="(${j.idJuego} == *{juego.idJuego})"></option>
+					</select>
+				</div>
+				
+				<hr style="background-color: rgb(0, 0, 0)" />
+				<div class="form-group row">
+					<div class="col-sm-6">
+						<input type="submit" value="update" class="btn btn-dark" /> <a
+							href="/detallegalerias/listar" class="btn btn-danger"><span>Cancelar</span></a>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+
+
+	<div th:if="${mensaje}" class="alert alert-info">
+		<p th:text="${mensaje}"></p>
+	</div>
+	<footer th:replace="master/master :: footer"></footer>
+</body>
+</html>

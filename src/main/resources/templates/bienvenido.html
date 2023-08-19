@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+</head>
+<body style="background-color: white">
+
+	<header th:replace="master/master :: header"></header>
+
+	<div class="container">
+		<hr style="background-color: gold" />
+		<div
+			style="font-size: 28px; color: black; font-weight: 60; font-family: fantasy;">
+			Te damos la bienvenid@, <span
+				th:text="${#authentication.getPrincipal().getUsername()}"></span>!
+		</div>
+
+
+		<hr style="background-color: black; font-weight: 20" />
+		<hr style="background-color: gold" />
+
+		<div class="row">
+
+			<div class="container-fluid">
+			<img class="image-fluid" th:src="@{/image/img0.jpg}">
+			</div>
+			<hr>
+			<!-- CARDS -->
+			<div class="col-12">
+				<form id="myform">
+					<div class="row">
+						<div class="col-sm">
+							<div class="card d-inline-block" style="width: 18rem;">
+								<img class="card-img-top" th:src="@{/image/img1.jpg}">
+								<div class="card-body">
+									<h5 class="card-title">¿Quienes somos?</h5>
+									<p class="card-text">Somos una empresa que se dedica a
+										promocionar y vender videojuegos independientes, ayudando a
+										los desarrolladores a reconocer su esfuerzo.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm">
+							<div class="card" style="width: 18rem;">
+								<img class="card-img-top" th:src="@{/image/img2.jpg}">
+								<div class="card-body">
+									<h5 class="card-title">Objetivos</h5>
+									<p class="card-text">Nuestro objetivo como distribuidor
+										digital de videojuegos es hacer reconocidos los videojuegos de
+										nuestros desarrolladores brindándoles feedback a nuestros
+										clientes por parte de la comunidad.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm">
+							<div class="card" style="width: 18rem;">
+								<img class="card-img-top" th:src="@{/image/img3.jpg}">
+								<div class="card-body">
+									<h5 class="card-title">Nosotros</h5>
+									<p class="card-text">Startup "G-Force" Somos 4 estudiantes
+										de las carreras de Ingeniería de Software e Ingeniería de
+										Sistemas de Información de la Universidad Peruana de Ciencias
+										Aplicadas (UPC), nuestro principal objetivo es brindarte una
+										de las mejores experiencias en videojuegos que podrías
+										encontrar en internet.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	<footer th:fragment="footer" class="container">
+		<hr style="background-color: black" />
+		<p align="center">G-Point en web 2022</p>
+	</footer>
+</body>
+</html>

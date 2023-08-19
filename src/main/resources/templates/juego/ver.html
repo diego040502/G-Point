@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head"></head>
+<meta charset="UTF-8"></meta>
+
+<body>
+	<header th:replace="master/master :: header"></header>
+
+	<div class="container">
+
+
+		<div class="card">
+			<div class="card-header text-white bg-dark mb-3">Reporte de
+				Juego</div>
+			<div class="card-body">
+
+				<div class="table-responsive">
+					<table class="table table-dark">
+
+						<tbody>
+							<tr>
+								<td>CODIGO</td>
+								<td th:text="${j.idJuego}"></td>
+							</tr>
+							<tr>
+								<td>CATEGORÍA</td>
+								<td th:text="${j.categoria.tipoCategoria}"></td>
+							</tr>
+							<tr>
+								<td>CLASIFICACION</td>
+								<td th:text="${j.clasificacion.tipoClasificacion}"></td>
+							</tr>
+							<tr>
+								<td>CALIFICACION</td>
+								<td th:text="${j.calificacion.numEstrellas}"></td>
+							</tr>
+							<tr>
+								<td>POPULARIDAD</td>
+								<td th:text="${j.popularidad.tipoPopularidad}"></td>
+							</tr>
+							<tr>
+								<td>NOMBRE</td>
+								<td th:text="${j.nombreJuego}"></td>
+							</tr>
+
+							<tr>
+								<td>DESCRIPCION</td>
+								<td th:text="${j.descripcion}"></td>
+							</tr>
+							
+							<tr>
+								<td>FECHA DE LANZAMIENTO</td>
+								<td th:text="${#dates.format(j.fechaLanzamiento,'dd/MM/yyyy')}"></td>
+							</tr>
+							
+							<tr>
+								<td>TAMAÑO</td>
+								<td th:text="${j.tamanoJuego}"></td>
+							</tr>
+							
+								<tr>
+								<td>PRECIO</td>
+								<td th:text="${j.precioJuego}"></td>
+							</tr>
+
+							<tr>
+								<td>FOTO</td>
+								<td><img th:if="${#strings.length(j.foto)> 0}"
+									class="img-thumbnail rounded float-left"
+									style="max-width: 50%;"
+									th:src="@{'/juegos/uploads/' + ${j.foto}}" th:alt="${j.foto}" /></td>
+							</tr>
+						</tbody>
+
+					</table>
+
+					<a th:href="@{/juegos/listar}" type="button"
+						class="btn btn-primary k"> <span
+						class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="master/master :: footer"></footer>
+</body>
+</html>

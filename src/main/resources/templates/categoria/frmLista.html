@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+</head>
+<body style="background-color: white">
+
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+
+		<hr style="background-color: gold" />
+		<div
+			style="font-size: 28px; color: black; font-weight: 60; font-family: fantasy;">Lista
+			de Categorias</div>
+		<hr style="background-color: black; font-weight: 20" />
+		<hr style="background-color: gold" />
+
+		<div>
+			<div class="table-responsive">
+				<table class="table table-dark" border=1
+					style="background-color: rgb(128, 128, 128)">
+					<thead align="center">
+						<tr>
+							<th>Id</th>
+							<th>Tipo</th>
+							<th>Descripción</th>
+							<th>Eliminar</th>
+							<th>Actualizar</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="a:${listaCategorias}">
+							<td th:text="${a.idCategoria}" align="center"></td>
+							<td th:text="${a.tipoCategoria}" align="center"></td>
+							<td th:text="${a.descripcionCategoria}" align="center"></td>
+							
+							<td align="center"><a
+								th:href="@{/categorias/eliminar?id=}+${a.idCategoria}"><img
+									th:src="@{/image/delete.png}" width="30" height="30"></a></td>
+							<td align="center"><a
+								th:href="@{'/categorias/irmodificar/'+${a.idCategoria}}"><img
+									th:src="@{/image/update.png}" width="30" height="30"></a></td>
+							
+						
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<footer th:fragment="footer" class="container">
+		<hr style="background-color: black" />
+		<p align="center">G-Point en web 2022</p>
+	</footer>
+</body>
+</html>

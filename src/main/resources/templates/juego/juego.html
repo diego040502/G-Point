@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head"></head>
+<meta charset="UTF-8"></meta>
+
+<body style="background-color: white">
+
+	<header th:replace="master/master :: header"></header>
+
+	<div class="container">
+
+		<hr style="background-color: gold" />
+		<div
+			style="font-size: 28px; color: black; font-weight: 60; font-family: fantasy;">Registrar
+			Juego</div>
+		<hr style="background-color: black; font-weight: 20" />
+		<hr style="background-color: gold" />
+
+		<div>
+			<form th:action="@{/juegos/guardar}" th:object="${j}" method="post"
+				enctype="multipart/form-data">
+
+				<div class="form-group row">
+					<label for="idJuego" class="col-sm-2 col-form-label">Id</label>
+					<div class="col-sm-6">
+						<input type="text" th:field="*{idJuego}" class="form-control"
+							th:errorclass="'form-control alert-danger'" /> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('idJuego')}" th:errors="*{idJuego}"></small>
+					</div>
+				</div>
+
+
+				<div class="col-sm-12">
+					<label for="idCategoria" class="col-sm-2 col-form-label">Categoria:
+					</label> <select class="form-control" required="required"
+						th:field="*{categoria.idCategoria}">
+						<option th:each="c: ${listaCategorias}"
+							th:value="${c.idCategoria}" th:text="${c.descripcionCategoria}"
+							th:selected="(${c.idCategoria} == *{categoria.idCategoria})"></option>
+					</select>
+				</div>
+
+				<div class="col-sm-12">
+					<label for="idClasificacion" class="col-sm-2 col-form-label">Clasificacion:
+					</label> <select class="form-control" required="required"
+						th:field="*{clasificacion.idClasificacion}">
+						<option th:each="cla: ${listaClasificaciones}"
+							th:value="${cla.idClasificacion}"
+							th:text="${cla.tipoClasificacion}"
+							th:selected="(${cla.idClasificacion} == *{clasificacion.idClasificacion})"></option>
+					</select>
+				</div>
+
+				<div class="col-sm-12">
+					<label for="idCalificacion" class="col-sm-2 col-form-label">Calificacion:
+					</label> <select class="form-control" required="required"
+						th:field="*{calificacion.idCalificacion}">
+						<option th:each="ca: ${listaCalificaciones}"
+							th:value="${ca.idCalificacion}" th:text="${ca.numEstrellas}"
+							th:selected="(${ca.idCalificacion} == *{calificacion.idCalificacion})"></option>
+					</select>
+				</div>
+
+				<div class="col-sm-12">
+					<label for="idPopularidad" class="col-sm-2 col-form-label">Popularidad:
+					</label> <select class="form-control" required="required"
+						th:field="*{popularidad.idPopularidad}">
+						<option th:each="p: ${listaPopularidades}"
+							th:value="${p.idPopularidad}" th:text="${p.tipoPopularidad}"
+							th:selected="(${p.idPopularidad} == *{popularidad.idPopularidad})"></option>
+					</select>
+				</div>
+
+				<div class="col-sm-20">
+					<label class="form-label" style="font-weight: 600">Nombre:
+					</label><input type="text" th:field="*{nombreJuego}" class="form-control"
+						required="required"></input>
+				</div>
+
+				<div class="col-sm-20">
+					<label class="form-label" style="font-weight: 600">Descripcion:
+					</label><input type="text" th:field="*{descripcion}" class="form-control"
+						required="required"></input>
+				</div>
+
+				<div class="col-sm-12">
+					<label class="form-label">Fecha de Lanzimiento:</label> <input
+						type="date" th:field="*{fechaLanzamiento}" class="form-control"
+						required="required"></input>
+				</div>
+
+				<div class="col-sm-12">
+					<label class="form-label">Tamaño de Juego::</label> <input
+						type="number" th:field="*{tamanoJuego}" class="form-control"
+						required="required" min="1"></input>
+				</div>
+
+				<div class="col-sm-12">
+					<label class="form-label">Precio de Juego::</label> <input
+						type="number" th:field="*{precioJuego}" class="form-control"
+						required="required" min="1"></input>
+				</div>
+
+				<div class="form-group row">
+					<label for="file" class="col-sm-2 col-form-label ">Foto:</label>
+					<div class="col-sm-6">
+						<input type="file" name="file" class="form-control"
+							th:text="${j.foto}" required="required" />
+					</div>
+				</div>
+
+
+				<hr style="background-color: rgb(0, 0, 0)" />
+				<div class="form-group row">
+					<div class="col-sm-6">
+						<input type="submit" value="Registrar" class="btn btn-dark" /> <a
+							href="/juegos/listar" class="btn btn-danger"><span>Cancelar</span></a>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+
+
+	<div th:if="${mensaje}" class="alert alert-info">
+		<p th:text="${mensaje}"></p>
+	</div>
+	<footer th:replace="master/master :: footer"></footer>
+</body>
+</html>

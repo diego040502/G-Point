@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head"></head>
+<meta charset="UTF-8"></meta>
+
+<body style="background-color: white">
+
+	<header th:replace="master/master :: header"></header>
+
+	<div class="container">
+
+		<hr style="background-color: gold" />
+		<div
+			style="font-size: 28px; color: black; font-weight: 60; font-family: fantasy;">Registrar
+			Transacciones</div>
+		<hr style="background-color: black; font-weight: 20" />
+		<hr style="background-color: gold" />
+
+		<div>
+			<div class="col-8">
+				<form th:action="@{/transacciones/guardar}" th:object="${tra}"
+					method="post">
+
+					<div class="col-sm-12">
+						<label for="idJuego" class="col-sm-2 col-form-label">Juego:
+						</label> <select class="form-control" th:field="*{juego.idJuego}">
+							<option th:each="j:${listaJuegos}" th:value="${j.idJuego}"
+								th:text="${j.tipoClasificacion}"
+								th:selected="(${j.idJuego} == *{juego.idJuego})"></option>
+						</select>
+					</div>
+
+					<div class="col-sm-12">
+						<label for="idUsuario" class="col-sm-2 col-form-label">Usuario:
+						</label> <select class="form-control" th:field="*{usuario.id}">
+							<option th:each="u:${listaUsuarios}" th:value="${u.id}" th:text="${u.username}"
+								th:selected="(${u.id} == *{usuario.id})"></option>
+						</select>
+					</div>
+
+					<!-- PRECIO JUEGO -->
+					<div class="col-sm-12">
+						<label class="form-label" style="font-weight: 600">Precio
+							Juego: </label><input type="text" th:field="*{precioJuego}"
+							class="form-control"></input>
+					</div>
+
+					<!-- FECHA TRANSACCION -->
+					<label for="fechaLanzamiento" class="col-sm-2 col-form-label">Fecha de Transaccion:</label>
+					<div class="col-sm-12">
+						<input type="date" th:field="*{fechaTransaccion}"
+							class="form-control" pattern="[0-10]"
+							title="Utilice el formato yyyy/mm/dd" required>
+						<div th:object="${tra}" th:remove="tag">
+							<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+								role="alert">
+								<li th:each="error : ${#fields.errors('*')}" th:text="${error}"></li>
+							</ul>
+						</div>
+					</div>
+
+					<hr style="background-color: rgb(0, 0, 0)" />
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<input type="submit" value="Registrar" class="btn btn-dark" /> <a
+								href="/transacciones/listar" class="btn btn-danger"><span>Cancelar</span></a>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+</div>
+		<div th:if="${mensaje}" class="alert alert-info">
+			<p th:text="${mensaje}"></p>
+		</div>
+		<footer th:replace="master/master :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="master/master :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body style="background-color: white">
+	<header th:replace="master/master :: header"></header>
+	<div class="container">
+		<hr style="background-color: gold" />
+		<div
+			style="font-size: 28px; color: black; font-weight: 60; font-family: fantasy;">Registrar
+			Categoria</div>
+		<hr style="background-color: black; font-weight: 20" />
+		<hr style="background-color: gold" />
+
+
+		<div class="row">
+			<div class="col-8">
+				<form th:action="@{/categorias/guardar}" th:object="${c}"
+					method="post">
+					<ul></ul>
+					<div class="col-sm-12">
+						<label class="form-label" style="font-weight: 600">Tipo: </label>
+						<input type="text" required th:field="*{tipoCategoria}"
+							class="form-control"></input>
+					</div>
+					<ul></ul>
+					<div class="col-sm-12">
+						<label class="form-label" style="font-weight: 600">Deccripción:
+						</label> <input type="text" required th:field="*{descripcionCategoria}"
+							class="form-control"></input>
+					</div>
+
+					<ul></ul>
+					<hr style="background-color: rgb(0, 0, 0)" />
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<input type="submit" value="Registrar" class="btn btn-dark" /> <a
+								href="/categorias/listar" class="btn btn-danger"><span>Cancelar</span></a>
+						</div>
+					</div>
+
+
+
+				</form>
+			</div>
+
+
+
+			<div class="col" align="center">
+				<img th:src="@{/image/registro.png}" width="300" height="320"
+					align="middle">
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>
